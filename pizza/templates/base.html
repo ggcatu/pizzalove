@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/coming-soon.css" %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+<img id="BK" src="{% static "img/pizza.jpg" %}"></img>
+    <div class="overlay">
+    
+
+    <div class="row h-100" style="margin-right: 0px;">
+	    <div class="masthead col-xl-6 col-lg-6 ">
+	      <div class="masthead-bg"></div>
+	      <div class="container h-100">
+	        <div class="row h-100">
+	          <div class="col-12 my-auto">
+	            <div class="masthead-content text-white py-5 py-lg-0">
+	        	  {% block content %}
+				  {% endblock %}
+	            </div>
+	          </div>
+	        </div>	
+	      </div>
+	    </div>
+
+	    <div class="masthead col-xl-6 col-lg-6 " >
+	      <div class="container h-100">
+	        <div class="row h-100">
+	          <div class="col-12 my-auto">
+	            <div class="masthead-content text-white py-5 py-lg-0">
+					<canvas class="chart" id="myChart" width="400" height="400"></canvas>		
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+	</div>
+
+	<nav class="navbar navbar-expand-sm navbar-dark fixed-bottom">
+	  <a class="navbar-brand" href="#">Pizza lovers!</a>
+	  <ul class="navbar-nav">
+	  	 <li class="nav-item">
+	      <a class="nav-link" href="{% url 'home' %}">Home</a>
+	    </li>
+	  	{% if not user.is_authenticated %}
+        <li class="nav-item">
+	      <a class="nav-link" href="{% url 'login' %}">Login</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+	    </li>
+		{% else %}
+		<li class="nav-item">
+	      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+	    </li>
+		{% endif %}
+	  </ul>
+	</nav>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+    <script>
+		var DATA_ENDPOINT = "{% url 'all-users' %}";
+		{% if user.is_authenticated %}
+		var VOTE_LINK = "{% url 'love-it' pk=user.pk %}";
+		var USERNAME = "{{user.username}}";
+		{% endif %}
+	</script>
+
+    <!-- Custom scripts for this template -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>	
+    <script src="{% static "js/coming-soon.js" %}"></script>
+
+  </body>
+
+</html>
+
+
+

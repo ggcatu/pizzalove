@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+        <h1 class="mb-3"> Hi {{ user.username }}!</h1>
+        <p class="mb-5">Show us your love for pizza by 
+        <strong>clicking</strong> the button below</p>
+        <button  class="btn btn-light" id="love">I love pizza</button>
+	{% else %}
+	  	<h1 class="mb-3"> Hello stranger!</h1>
+        <p class="mb-5">To show your love for pizza's you first need to 
+        <strong><a href="{% url 'login' %}">login</a></strong> or <strong><a href="{% url 'signup' %}">sign up</a></strong>.</p>
+	{% endif %}
+{% endblock %}
+
