@@ -11,6 +11,8 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['email', 'username', 'pizza_love']
 
+    fieldsets = UserAdmin.fieldsets + (('Love for pizza',  {'fields': ('pizza_love',)}),)
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),

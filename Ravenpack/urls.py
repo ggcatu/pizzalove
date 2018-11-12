@@ -21,7 +21,7 @@ from pizza.forms import LoginForm
 urlpatterns = [
 	path('', include('pizza.urls')),
     path('admin/', admin.site.urls),
-    path('account/login/', views.LoginView.as_view(form_class=LoginForm), name='login'), # new
-    path('account/logout/', views.LogoutView.as_view(next_page = 'home'), name='login'), # new
-    path('account/', include('django.contrib.auth.urls')), # new
+    path('accounts/login/*', views.LoginView.as_view(form_class=LoginForm), name='login'), # new
+    path('accounts/logout/', views.LogoutView.as_view(next_page = 'home'), name='logout'), # new
+    path('accounts/', include('django.contrib.auth.urls')), # new
 ]
