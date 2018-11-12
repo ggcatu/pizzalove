@@ -73,6 +73,10 @@ h6 {
   z-index: 2;
 }
 
+.masthead-content a{
+  color:white;
+}
+
 .masthead .masthead-bg {
   position: absolute;
   top: 0;
